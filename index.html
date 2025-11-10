@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+
+  <title>Frontend Mentor | Newsletter sign-up form with success message</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .attribution {
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .attribution a {
+      color: hsl(228, 45%, 44%);
+    }
+
+    .bg {
+      display: flex;
+      min-height: 100vh;
+      background-color: hsl(235, 18%, 26%);
+    }
+
+    .main-container {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .card {
+      border-radius: 15px;
+      margin: auto;
+      display: flex;
+      /*flex*/
+      padding: 20px;
+      background-color: #fff;
+      width: 630px;
+      height: 430px;
+    }
+
+    .img {
+      object-fit: cover;
+    }
+
+    .ul {
+      display: flex;
+      flex-direction: column;
+      list-style: none;
+      gap: 10px;
+    }
+
+    .text-container {
+      width: 95%;
+
+    }
+
+    .text::after {
+      content: '';
+      display: block;
+      height: 20px;
+    }
+
+    .text {
+      margin-top: 20px;
+      font-size: x-small;
+      font-weight: 500;
+    }
+
+    .li {
+      display: flex;
+      align-items: center;
+      font-size: xx-small;
+      font-weight: 500;
+    }
+
+    .li::before {
+      content: "";
+      height: 21px;
+      width: 21px;
+      margin-right: 10px;
+      background-image: url('./assets/images/icon-list.svg');
+      flex-shrink: 0;
+    }
+
+    .emailText {
+      font-size: xx-small;
+      font-weight: 500;
+      display: inline-block;
+    }
+
+    #result {
+      font-size: xx-small;
+      font-weight: 500;
+      display: inline-block;
+      margin-left: 26%;
+      color: hsl(4, 100%, 67%);
+    }
+
+    .title {
+      margin-top: 20px;
+      font-size: 40px;
+      color: hsl(234, 29%, 20%);
+    }
+
+    .emailInput {
+      width: 85%;
+      height: 45px;
+      border-radius: 8px;
+      border: solid 1px black;
+    }
+
+    .emailInput::placeholder {
+      text-indent: 15px;
+    }
+
+    .submitBtn {
+      color: white;
+      margin-top: 20px;
+      width: 85%;
+      height: 45px;
+      border-radius: 8px;
+      background-color: hsl(234, 29%, 20%);
+      user-select: none;
+      transition: transform 0.1s ease, background-color 0.3s ease;
+    }
+
+    .submitBtn:active {
+      background-color: hsl(235, 18%, 26%);
+      transform: translateY(2px);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .inValid {
+      border: 2px solid red;
+      background-color: #fff0f0;
+    }
+
+    .successCard {
+      border-radius: 15px;
+      margin: auto;
+      display: none;
+      /*flex*/
+      padding: 50px;
+      background-color: #fff;
+      flex-direction: column;
+      width: 300px;
+      gap: 20px;
+    }
+
+    .successIcon {
+      width: 50px;
+      height: 50px;
+    }
+
+    .Btn {
+      color: white;
+      width: 100%;
+      height: 45px;
+      border-radius: 8px;
+      background-color: hsl(234, 29%, 20%);
+      transition: transform 0.1s ease, background-color 0.3s ease;
+    }
+
+    .Btn:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      background-color: hsl(235, 18%, 26%);
+    }
+
+    .successTitle {
+      color: hsl(234, 29%, 20%);
+      font-size: 40px;
+      line-height: 45px;
+    }
+
+    .successText {
+      font-size: x-small;
+      color: hsl(234, 29%, 20%);
+      font-weight: 500;
+    }
+  </style>
+</head>
+
+<body>
+  <!--Thanks for subscribing!
+
+  A confirmation email has been sent to ash@loremcompany.com.
+  Please open it and click the button inside to confirm your subscription.
+
+  Dismiss message -->
+  <div class="bg">
+    <div class="card">
+      <div class="main-container">
+        <div class="text-container">
+          <h1 class="title">Stay updated!</h1>
+          <p class="text">Join 60,000+ product managers receiving monthly updates on:</p>
+          <ul class="ul">
+            <li class="li">Product discovery and building what matters</li>
+            <li class="li">Measuring to ensure updates are a success</li>
+            <li class="li">And much more!</li>
+          </ul>
+        </div>
+        <div class="input-container">
+          <p class="emailText">Emall address</p>
+          <div id="result"></div>
+          <input class="emailInput" id="emailInput" placeholder="email@company.com">
+          <button class="submitBtn" id="submitBtn">Subscribe to monthly newsletter</button>
+        </div>
+      </div>
+      <img class="img" src="/assets/images/illustration-sign-up-desktop.svg" alt="简约的表单图片">
+    </div>
+    <!--成功提交-->
+    <div class="successCard">
+      <img class="successIcon" src="./assets/images/icon-success.svg" alt="">
+      <h1 class="successTitle">Thanks for subscribing!</h1>
+      <p class="successText">A confirmation email has been sent to <span id="userEmail"></span>
+        Please open it and click the button inside to confirm your subscription.</p>
+      <button class="Btn" id="Btn">Dismiss message </button>
+    </div>
+  </div>
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+    Coded by <a href="#">Ricochet</a>.
+  </div>
+</body>
+
+<script>
+  const emailInput = document.getElementById('emailInput');
+  const submitBtn = document.getElementById('submitBtn');
+  const result = document.getElementById('result');
+  submitBtn.addEventListener('click', function () {
+    const email = emailInput.value.trim();
+    if (isValidEmail(email)) {
+      document.querySelector('.card').style.display = 'none';
+      document.querySelector('.successCard').style.display = 'flex';
+      document.getElementById('userEmail').textContent = email;
+    } else {
+      emailInput.classList.add('inValid');
+      result.textContent = 'Valid email required';
+
+    }
+  });
+  function isValidEmail(email) {
+    return email.includes('@') && email.indexOf('@') > 0 && email.indexOf('@') < email.length - 1;
+  }
+  const Btn = document.getElementById('Btn');
+  Btn.addEventListener('click', function () {
+    document.querySelector('.card').style.display = 'flex';
+    document.querySelector('.successCard').style.display = 'none';
+  });
+</script>
+
+</html>
